@@ -1,0 +1,46 @@
+.TH _printf 3 "31 July 2018" "1.0" "printf man page"
+.SH NAME
+.B _printf
+- print string and data with format specifiers
+.SH SYNOPSIS
+.B _printf
+.IR FORMAT [ARGUMENT]...
+.SH DESCRIPTION
+The function _printf is a working copy of printf from stdio.h. Function takes a string, parses it for format specifiers, replaces them with corresponding values and
+prints the string to standard out. 
+.SH OPTIONS
+Print ARGUMENT(s) according to FORMAT:
+
+-%s: takes input as a string
+
+-%c: takes input as a character
+
+-%i: takes input as an integer
+
+-%d: takes input as an integer
+
+-%%: prints a percent sign
+
+-%b: converts unsigned integer to decimal 
+
+-%u: takes input as an unsigned integer
+
+-%o: converts unsigned integer to octal
+
+-%x: converts unsigned integer to hexadecimal (lowercase)
+
+-%X: converts unsigned integer to hexadecimal (uppercase)
+
+-%S: takes input as a string but replaces nonprintable chars with its ascii
+values
+
+-%r: takes input as a string and reverses it
+
+-%R: takes input as a string and returns its ROT13 encryption
+ 
+.SH BUGS
+No known bugs.
+.SH REPORTING BUGS
+Please add issues to github repository.
+.SH AUTHOR
+Written by Jian Huang and Erwin Gove.
