@@ -10,10 +10,12 @@
  */
 int main(void)
 {
+	int i;
 	char *line;
-	char **argv;
+	char **argv = malloc(sizeof(char*) * 2);
 	pid_t child;
-	size_t characters, size = 1;
+	ssize_t characters;
+	size_t size = 1;
 
 	line = malloc(sizeof(char) * size);
 	if (!line)
@@ -28,6 +30,10 @@ int main(void)
 		printf("Prompt : ");
 
 		characters = getline(&line, &size, stdin);
+		for (i = 0 ; line[i] ; i++)
+			if (line[i] == '\n')
+				line[i] = '\0';
+		(void)characters;
 		argv[0] = line;
 		printf("%s\n", argv[0]);
 		child = fork();
@@ -44,4 +50,5 @@ int main(void)
 		else
 			wait(NULL);
 	}
+	return (0);
 }
