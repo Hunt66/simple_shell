@@ -12,8 +12,8 @@ char **tok(char *st, char *dil)
 	char **tokens;
 
 	strcpy(str, st);
-	for (i = 0 ; str[i] ; i++)
-	{
+	for (i = 0 ; str[i] ; i++)      
+   	{
 		if (str[i] == ' ')
 		{
 			spaces++;
