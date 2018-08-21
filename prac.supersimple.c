@@ -1,9 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
+#include "holberton_shell.h"
 
 /**
  * Super simple Shell
@@ -24,7 +19,6 @@ int main(void)
 		return (0);
 	}
 
-	argv[1] = NULL;
 	while (1)
 	{
 		printf("Prompt : ");
