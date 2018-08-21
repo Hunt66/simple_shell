@@ -1,15 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/wait.h>
-#include <limits.h>
 #include "holberton_shell.h"
 
 /**
- * Super simple Shell
+ * Simple Shell
  */
 int main(void)
 {
@@ -21,15 +13,15 @@ int main(void)
 	ssize_t characters;
 	size_t size = 1;
 	char cwd[PATH_MAX];
+	char *test;
 
 	line = malloc(sizeof(char) * size);
 	if (!line)
 	{
-		perror("Error:");
+		perror("Error0:");
 		return (0);
 	}
 
-	argv[1] = NULL;
 	while (1)
 	{
 		characters = 0;
@@ -38,30 +30,35 @@ int main(void)
 			printf("%s$ ", cwd);
 
 			characters = getline(&line, &size, stdin);
+			argv = tok(line, " \n");
+
 			if (characters == EOF)
 				break;
 			for (i = 0 ; line[i] ; i++)
 				if (line[i] == '\n')
 					line[i] = '\0';
 			(void)characters;
-			argv[0] = line;
+
 			child = fork();
 			if (child == -1)
 			{
-				perror("Error:");
+				perror("Error1:");
 				return (0);
 			}
 			if (child == 0)
 			{
-				if (stat(argv[0], &st) == 0)
+				test = argv[0];
+				if (stat(test, &st) != 0)
 				{
-					if (execve(argv[0], argv, NULL) == -1)
-						perror("Error:");
+					perror("Error2:");
 				}
 				else
 				{
-
-					printf("No comand %s\n", argv[0]);
+					if (execve(argv[0], argv, NULL) == -1)
+					{
+						perror("Error3:");
+						break;
+					}
 				}
 			}
 			else
@@ -69,7 +66,7 @@ int main(void)
 		}
 		else
 		{
-			perror("Error:");
+			perror("Error4:");
 			return (-1);
 		}
 	}
