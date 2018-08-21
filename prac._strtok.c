@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "holberton_shell.h"
 
 char **tok(char *st, char *dil)
 {
@@ -11,7 +12,7 @@ char **tok(char *st, char *dil)
 	char **tokens;
 
 	strcpy(str, st);
-	for (i = 0 ; str[i] ; i++)      
+	for (i = 0 ; str[i] ; i++)
    	{
 		if (str[i] == ' ')
 		{
@@ -21,12 +22,12 @@ char **tok(char *st, char *dil)
 	printf("counting spaces worked\n");
 	tokens = malloc(sizeof(char*) * spaces);
 	printf("malloc worked\n");
-	token = strtok(str, dil);
+	token = _strtok(str, dil);
 	for (i = 0 ; token != NULL ; i++)
 	{
 		tokens[i] = malloc(sizeof(token));
 		tokens[i] = strcpy(tokens[i], token);
-		token = strtok(NULL, dil);
+		token = _strtok(NULL, dil);
 	}
 	printf("strtok worked\n");
 	/*for (i = 1 ; token[i] ; i++)
