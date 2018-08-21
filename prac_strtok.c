@@ -2,7 +2,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include "holberton_shell.h"
 
 
 /**
@@ -15,14 +15,20 @@
 
 char *_strtok(char *str, const char *delim)
 {
-	int i;
 
+	static char *olds;
+	char *nstr = "";
+	int i, j;
 
 
 	if (str == NULL)
 	{
-		
+		return (_strtok(olds, delim));
 	}
+
+
+	for (j = 0 ; str[j] != '\0' ; j++)
+		;
 
 	for (i = 0 ; str[i] != '\0' ; i++)
 	{
@@ -33,6 +39,16 @@ char *_strtok(char *str, const char *delim)
 		}
 	}
 
+	nstr = malloc(j - i + 1);
+
+	for (j = 0 ; str[i + 1] != '\0' ; i++, j++)
+	{
+		nstr[j] = str[i + 1];
+	}
+	nstr[j] = str[i + 1];
+
+
+	olds = nstr;
 
 
 	return (str);
