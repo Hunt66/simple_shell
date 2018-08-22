@@ -25,7 +25,7 @@ char **tok(char *st, char *dil)
 	/*counts spaces or newlines in string*/
 	for (i = 0 ; str[i] ; i++)
 	{
-		if (str[i] == ' ' || str[i] == '\n')
+		if (str[i] == ' ' || str[i] == '\n' || str[i] == ':')
 		{
 			spaces++;
 		}

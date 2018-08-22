@@ -50,19 +50,33 @@ char *_getenv(const char *name, char **env)
  */
 char **_path(int argc, char **argv, char **env)
 {
-	int i, j;
+	int i, j, k;
 	char *str;
+	char **strs;
+	struct stat st;
 	(void)argc;
 
-	if (!_getenv(argv[0], env))
-		return (argv);
+	/*if (!_getenv(argv[0], env))
+	  return (argv);*/
 	str = _getenv(argv[0], env);
 
-	for (i = 0; str[i] != '\0'; i++)
-		;
-	for (j = 0; argv[0][j] != '\0'; j++)
-		str[i + j] = argv[0][j];
-	str[i + j] = '\0';
-	argv[0] = str;
+	strs = tok(str, ":");
+	for (k = 0 ; strs[k] != NULL ; k++)
+	{
+		for (i = 0; strs[k][i] != '\0'; i++)
+			;
+		for (j = 0 ; argv[0][j] != '\0' ; j++)
+			strs[k][i + j] = argv[0][j];
+		if (stat(strs[k], &st) == 0)
+		{
+			str[i + j] = '\0';
+			argv[0] = strs[k];
+			for (i = 0 ; strs[i] != NULL ; i++)
+				free(strs[i]);
+			free(strs);
+			free(str);
+			return (argv);
+		}
+	}
 	return (argv);
 }
