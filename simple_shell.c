@@ -9,8 +9,6 @@
 
 int main(void)
 {
-	int i;            /*variables*/
-	struct stat st;
 	char *line;
 	char **argv;
 	pid_t child;
@@ -46,24 +44,8 @@ int main(void)
 			}
 			if (child == 0)
 			{
-				if (stat(argv[0], &st) != 0)  /*check for if  */
-				{                             /*command exists*/
-					perror("Error2:");
-				}
-				else
-				{         /*exicutest command*/
-					if (execve(argv[0], argv, NULL) == -1)
-					{
-						perror("Error3:");
-						break;
-					}
-					for (i = 0 ; argv[i] ; i++)
-					{
-						free(argv[i]);
-					}
-					free(argv);  /*freeing all in child*/
-					free(line);
-				}
+				if (stat_exec(argv, line) == -1)
+					break;
 			}
 			else
 				wait(NULL);  /*waites for current process */
@@ -74,11 +56,6 @@ int main(void)
 			return (-1);
 		}
 	}
-	for (i = 0 ; argv[i] != NULL ; i++)
-	{
-		free(argv[i]);
-	}
-	free(argv);
-	free(line);      /*free all in parent*/
+	free_shell(argv, line);      /*free all in parent*/
 	return (0);
 }
