@@ -51,6 +51,7 @@ char *_getenv(const char *name, char **env)
 char **_path(int argc, char **argv, char **env)
 {
 	int i, j, k;
+	char *path = "PATH";
 	char *str;
 	char **strs;
 	struct stat st;
@@ -58,23 +59,31 @@ char **_path(int argc, char **argv, char **env)
 
 	/*if (!_getenv(argv[0], env))
 	  return (argv);*/
-	str = _getenv(argv[0], env);
-
+	str = _getenv(path, env);
+	printf("getenv worked\n");
+	printf("env = %s\n", str);
 	strs = tok(str, ":");
+	printf("tok worked\n");
 	for (k = 0 ; strs[k] != NULL ; k++)
 	{
+		printf("k = %d\n", k);
 		for (i = 0; strs[k][i] != '\0'; i++)
-			;
+			printf("strs[k][%d] = %c\n", i, strs[k][i]);
 		for (j = 0 ; argv[0][j] != '\0' ; j++)
+		{
+			printf("saving comand char to strs %c\n", argv[0][j]);
 			strs[k][i + j] = argv[0][j];
+		}
+		str[i + j] = '\0';
 		if (stat(strs[k], &st) == 0)
 		{
-			str[i + j] = '\0';
+			printf("command exists\n");
 			argv[0] = strs[k];
 			for (i = 0 ; strs[i] != NULL ; i++)
 				free(strs[i]);
 			free(strs);
 			free(str);
+			printf("saving and freeing worked\n");
 			return (argv);
 		}
 	}
