@@ -8,12 +8,11 @@ int main(void)
 	int i;
 	struct stat st;
 	char *line;
-	char **argv = malloc(sizeof(char*) * 2);
+	char **argv;
 	pid_t child;
 	ssize_t characters;
-	size_t size = 1;
+	size_t size = 2;
 	char cwd[PATH_MAX];
-	char *test;
 
 	line = malloc(sizeof(char) * size);
 	if (!line)
@@ -24,7 +23,6 @@ int main(void)
 
 	while (1)
 	{
-		characters = 0;
 		if (getcwd(cwd, sizeof(cwd)) != NULL)
 		{
 			printf("%s$ ", cwd);
@@ -47,8 +45,7 @@ int main(void)
 			}
 			if (child == 0)
 			{
-				test = argv[0];
-				if (stat(test, &st) != 0)
+				if (stat(argv[0], &st) != 0)
 				{
 					perror("Error2:");
 				}
@@ -59,6 +56,12 @@ int main(void)
 						perror("Error3:");
 						break;
 					}
+					for (i = 0 ; argv[i] ; i++)
+					{
+						free(argv[i]);
+					}
+					free(argv);
+					free(line);
 				}
 			}
 			else
@@ -70,5 +73,12 @@ int main(void)
 			return (-1);
 		}
 	}
+	printf("\noutside loop\n");
+	for (i = 0 ; argv[i] != NULL ; i++)
+	{
+		free(argv[i]);
+	}
+	free(argv);
+	free(line);
 	return (0);
 }
