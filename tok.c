@@ -3,7 +3,7 @@
 char **tok(char *st, char *dil)
 {
 	int i;
-	char *str = malloc(sizeof(st));
+	char *str = malloc(strlen(st) + 1);
 	int spaces = 1;
 	char *token;
 	char **tokens;

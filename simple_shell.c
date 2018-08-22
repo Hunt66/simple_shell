@@ -11,7 +11,7 @@ int main(void)
 	char **argv;
 	pid_t child;
 	ssize_t characters;
-	size_t size = 2;
+	size_t size = 1;
 	char cwd[PATH_MAX];
 
 	line = malloc(sizeof(char) * size);
@@ -73,7 +73,6 @@ int main(void)
 			return (-1);
 		}
 	}
-	printf("\noutside loop\n");
 	for (i = 0 ; argv[i] != NULL ; i++)
 	{
 		free(argv[i]);
