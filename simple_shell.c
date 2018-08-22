@@ -7,7 +7,7 @@
  */
 
 
-int main(void)
+int main(int ac, char **av, char **env)
 {
 	char *line;
 	char **argv;
@@ -15,6 +15,8 @@ int main(void)
 	ssize_t characters;
 	size_t size = 1;
 	char cwd[PATH_MAX];
+	(void)ac;
+	(void)av;
 
 	line = malloc(sizeof(char) * size);   /*malloc line (comand line)*/
 	if (!line)
@@ -32,6 +34,7 @@ int main(void)
 			characters = getline(&line, &size, stdin);
 			argv = tok(line, " \n");   /*runs tok func on getline
                                                      comand line*/
+			argv = _path(1, argv, env);
 			if (characters == EOF)
 				break;          /*ctrl d breaks loop*/
 			(void)characters;

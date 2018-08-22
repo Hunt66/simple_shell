@@ -41,15 +41,28 @@ char *_getenv(const char *name, char **env)
 	return (NULL);
 }
 
-int main (int ac, char **av, char **env)
+/**
+ **_path - appends the user input onto the PATH if necessary
+ * @argc: argument count
+ * @argv: the given argument
+ * @env: the environment variable
+ * Return: a pointer to the full argument, with PATH
+ */
+char **_path(int argc, char **argv, char **env)
 {
-	char *a;
-	char *b;
-	(void)ac;
-	(void)av;
+	int i, j;
+	char *str;
+	(void)argc;
 
-	a = "PATH";
-	b = _getenv(a, env);
-	printf("%s\n", b);
-	return (0);
+	if (!_getenv(argv[0], env))
+		return (argv);
+	str = _getenv(argv[0], env);
+
+	for (i = 0; str[i] != '\0'; i++)
+		;
+	for (j = 0; argv[0][j] != '\0'; j++)
+		str[i + j] = argv[0][j];
+	str[i + j] = '\0';
+	argv[0] = str;
+	return (argv);
 }
