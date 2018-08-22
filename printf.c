@@ -1,5 +1,5 @@
 #include <stdarg.h>
-#include "holberton.h"
+#include "holberton_shell.h"
 
 #define STRUCT_SIZE 14
 
@@ -19,7 +19,7 @@ int _printf(const char *format, ...)
 	va_list args;
 
 	fm_t list[] = {{'d', _printfd}, {'i', _printfd}, {'c', _printfc},
-		       {'s', _printfs}, {'%', _printfp}, {'b', _printfb},
+		       {'s', _printfs}, {'%', _printfp},
 		       {'r', _printfr}, {'R', _printfR}, {'u', _printfu},
 		       {'o', _printfo}, {'x', _printfx}, {'X', _printfX},
 		       {'S', _printfS}, {'p', _printfpp}};

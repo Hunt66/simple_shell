@@ -27,7 +27,7 @@ int main(void)
 	{                 /*statement to close*/
 		if (getcwd(cwd, sizeof(cwd)) != NULL)
 		{
-			printf("%s$ ", cwd);  /*prompt*/
+			_printf("%s$ ", cwd);  /*prompt*/
 
 			characters = getline(&line, &size, stdin);
 			argv = tok(line, " \n");   /*runs tok func on getline
