@@ -1,10 +1,27 @@
 #include "holberton_shell.h"
 
 /**
+ * *_strcpy - copies the string pointed to by src to the buffer
+ * pointed to by dest.
+ * @dest: buffer string should be copied to
+ * @src: string given
+ * Return: the pointer to dest
+ */
+char *_strcpy(char *dest, char *src)
+{
+	int i;
+
+	for (i = 0; src[i] != '\0'; i++)
+		dest[i] = src[i];
+	dest[i] = '\0';
+
+	return (dest);
+}
+
+/**
  * _strcmp - compares two strings
  * @s1: first string
  * @s2: second string
- *
  * Return: an integer less than, equal to, or greater than 0, dependent on
  * the result of the function
  */
@@ -21,7 +38,6 @@ int _strcmp(const char *s1, char *s2)
 		}
 	return (0);
 }
-
 /**
  * *_getenv - gets the specified environment variable
  * @name: the name of the variable
@@ -34,13 +50,11 @@ char *_getenv(const char *name, char **env)
 
 	for (len = 0; name[len] != '\0'; len++)
 		;
-
 	for (i = 0; env[i]; i++)
 		if (_strcmp(name, env[i]) == 0)
 			return (&env[i][len + 1]);
 	return (NULL);
 }
-
 /**
  **_path - appends the user input onto the PATH if necessary
  * @argc: argument count
@@ -50,40 +64,38 @@ char *_getenv(const char *name, char **env)
  */
 char **_path(int argc, char **argv, char **env)
 {
-	int i, j, k;
+	int i, k, j = 0;
 	char *path = "PATH";
 	char *str;
 	char **strs;
 	struct stat st;
 	(void)argc;
 
-	/*if (!_getenv(argv[0], env))
-	  return (argv);*/
-	str = _getenv(path, env);
-	printf("getenv worked\n");
-	printf("env = %s\n", str);
-	strs = tok(str, ":");
-	printf("tok worked\n");
+	str = _getenv(path, env); /*gets the env*/
+	strs = tok(str, ":"); /* separates the tokens*/
 	for (k = 0 ; strs[k] != NULL ; k++)
 	{
-		printf("k = %d\n", k);
+		/*iterates to the end of a given element in the array*/
 		for (i = 0; strs[k][i] != '\0'; i++)
-			printf("strs[k][%d] = %c\n", i, strs[k][i]);
+			;
+		strs[k][i] = '/';
+
+		/*appends the command the user
+		  types to the gotten path element*/
 		for (j = 0 ; argv[0][j] != '\0' ; j++)
 		{
-			printf("saving comand char to strs %c\n", argv[0][j]);
-			strs[k][i + j] = argv[0][j];
+			strs[k][i + j + 1] = argv[0][j];
 		}
-		str[i + j] = '\0';
+
+		strs[k][i + j + 1] = '\0';
+		/*checks to see if the command exists*/
 		if (stat(strs[k], &st) == 0)
 		{
-			printf("command exists\n");
-			argv[0] = strs[k];
+			_strcpy(argv[0], strs[k]);
+			/*frees everything*/
 			for (i = 0 ; strs[i] != NULL ; i++)
 				free(strs[i]);
 			free(strs);
-			free(str);
-			printf("saving and freeing worked\n");
 			return (argv);
 		}
 	}

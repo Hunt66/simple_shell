@@ -15,6 +15,7 @@ int main(int ac, char **av, char **env)
 	ssize_t characters;
 	size_t size = 1;
 	char cwd[PATH_MAX];
+	int flag, i;
 	(void)ac;
 	(void)av;
 
@@ -32,8 +33,16 @@ int main(int ac, char **av, char **env)
 			_printf("%s$ ", cwd);  /*prompt*/
 
 			characters = getline(&line, &size, stdin);
-			argv = tok(line, " \n");   /*runs tok func on getline
-                                                     comand line*/
+			argv = tok(line, " \n");   /*runs tok func on getlinecomand line*/
+			flag = 1;
+			for (i = 0; argv[0][i] != '\0'; i++)
+				if (argv[0][i] != ' ')
+				{
+					flag = 0;
+					break;
+				}
+			if (flag == 1)
+				continue;
 			argv = _path(1, argv, env);
 			if (characters == EOF)
 				break;          /*ctrl d breaks loop*/
