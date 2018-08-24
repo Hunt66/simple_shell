@@ -29,18 +29,18 @@ int main(int ac, char **av, char **env)
 	{                 /*statement to close*/
 		if (getcwd(cwd, sizeof(cwd)) != NULL)
 		{
+			characters = -1;
 			_printf("%s$ ", cwd);  /*prompt*/
 
 			characters = getline(&line, &size, stdin);
 			argv = tok(line, " \n");   /*runs tok func on line*/
-			if (characters == EOF)
+			if (characters == -1)
 				break;
 			if (argv == NULL)
 				continue;
 			argv = _path(1, argv, env);
 			if (characters == EOF)
 				break;          /*ctrl d breaks loop*/
-			(void)characters;
 
 			child = fork();        /*creates and checks child*/
 			if (child == -1)
