@@ -16,18 +16,21 @@ char **tok(char *st, char *dil)
 	/*variables*/
 	int i;
 	char *str = malloc(_strlen(st) + 1);
-	int spaces = 1;
+	int spaces = -1;
 	char *token;
 	char **tokens;
 
 	for (i = 0 ; st[i] != '\0' ; i++)
 	{
-		if (st[i] != ' ')
+		if (st[i] != ' ' && st[i] != '\n') /*checking if just spaces*/
 		{
+			spaces = 1;
 			break;
 		}
-		{
-
+	}
+	if (spaces == -1)
+		return (NULL);
+	_strcpy(str, st);
 	/*counts spaces or newlines in string*/
 	for (i = 0 ; str[i] ; i++)
 	{
