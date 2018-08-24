@@ -19,7 +19,6 @@ int stat_exec(char **argv, char *line)
 		if (execve(argv[0], argv, NULL) == -1)
 		{
 			perror("Error3:");
-			return (-1);
 		}
 		free_shell(argv, line); /*frees child*/
 	}

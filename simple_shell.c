@@ -1,45 +1,41 @@
 #include "holberton_shell.h"
 
 /**
- *main- runs a simple shell that Erwin and Essence created
- *
- *Return: 0 if success -1 if fails fail will often crash instead
+ *main- runs a simple shell
+ * @ac: unused variable
+ * @av: unused variable
+ * @env: the environment variable
+ *Return: 0 if successful, -1 on failure
  */
-
-
 int main(int ac, char **av, char **env)
 {
-	char *line;
-	char **argv;
+	char **argv, *line = NULL;
 	pid_t child;
-	ssize_t characters;
-	size_t size = 1;
+	ssize_t characters = 0;
+	size_t size = 0;
 	char cwd[PATH_MAX];
     	(void)ac;
 	(void)av;
 
-	line = malloc(sizeof(char) * size);   /*malloc line (comand line)*/
-	if (!line)
+	while (characters != -1)
 	{
-		perror("Error0:");
-		return (-1);
-	}
-
-	while (1)         /*shell runs on infinate while loop with a break*/
-	{                 /*statement to close*/
+		free(line);
+		size = 0;
 		if (getcwd(cwd, sizeof(cwd)) != NULL)
 		{
 			_printf("%s$ ", cwd);  /*prompt*/
-
 			characters = getline(&line, &size, stdin);
+			fflush(stdin);
+			if (characters == -1)
+			{
+				write(STDOUT_FILENO, "\n", 1);
+				free_shell(argv, line);
+				exit(7);
+			}
 			argv = tok(line, " \n");   /*runs tok func on line*/
-			if (characters == EOF)
-				break;
 			if (argv == NULL)
 				continue;
 			argv = _path(1, argv, env);
-			if (characters == EOF)
-				break;          /*ctrl d breaks loop*/
 			(void)characters;
 
 			child = fork();        /*creates and checks child*/
@@ -52,16 +48,19 @@ int main(int ac, char **av, char **env)
 			{
 				if (stat_exec(argv, line) == -1)
 					break;
+				free_shell(argv, line);
+				exit(1);
 			}
 			else
-				wait(NULL);  /*waites for current process */
-		}                            /*befor continnuing */
+				wait(NULL);  /*waits for current process */
+		}                            /*before continuing */
 		else
 		{                          /*if no current working directory*/
 			perror("Error4:");
 			return (-1);
 		}
 	}
-	free_shell(argv, line);      /*free all in parent*/
+	if (argv != NULL)
+		free_shell(argv, line);      /*free all in parent*/
 	return (0);
 }
