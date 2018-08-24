@@ -3,9 +3,8 @@
 /**
  *_strlen- obtains the length of a string
  *@str: string to measure
- *Return: length
+ *Return: length of string
  */
-
 /*int _strlen(char *str)
 {
 	int i;
@@ -16,12 +15,11 @@
 }*/
 
 /**
- *free_shell- frees all elaments of the simple shell
+ *free_shell- frees all elements of the simple shell
  *@argv: input array of string to be freed
  *@line: string line to be freed
  *Return: void
  */
-
 void free_shell(char **argv, char *line)
 {
 	int i;
@@ -30,9 +28,10 @@ void free_shell(char **argv, char *line)
 	{
 		free(argv[i]);
 	}
-	free(argv);   /*FREE*/
+	free(argv);
 	free(line);
 }
+
 /**
  * *_strcpy - copies the string pointed to by src to the buffer
  * pointed to by dest.

@@ -1,7 +1,5 @@
 #include "holberton_shell.h"
 
-
-
 /**
  * _strcmp - compares two strings
  * @s1: first string
@@ -22,6 +20,7 @@ int _strcmp(const char *s1, char *s2)
 		}
 	return (0);
 }
+
 /**
  * *_getenv - gets the specified environment variable
  * @name: the name of the variable
@@ -39,6 +38,7 @@ char *_getenv(const char *name, char **env)
 			return (&env[i][len + 1]);
 	return (NULL);
 }
+
 /**
  **_path - appends the user input onto the PATH if necessary
  * @argc: argument count
@@ -63,14 +63,12 @@ char **_path(int argc, char **argv, char **env)
 		for (i = 0; strs[k][i] != '\0'; i++)
 			;
 		strs[k][i] = '/';
-
 		/*appends the command the user
 		  types to the gotten path element*/
 		for (j = 0 ; argv[0][j] != '\0' ; j++)
 		{
 			strs[k][i + j + 1] = argv[0][j];
 		}
-
 		strs[k][i + j + 1] = '\0';
 		/*checks to see if the command exists*/
 		if (stat(strs[k], &st) == 0)
