@@ -45,5 +45,6 @@ char **tok(char *st, char *dil);              /*prototypes*/
 void free_shell(char **argv, char *line);
 int stat_exec(char **argv, char *line);
 char **_path(int argc, char **argv, char **env);
+char *_strcpy(char *dest, char *src);
 
 #endif /*HOLBERTON_SHELL_H*/
