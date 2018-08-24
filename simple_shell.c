@@ -23,6 +23,7 @@ int main(int ac, char **av, char **env)
 		size = 0;
 		if (getcwd(cwd, sizeof(cwd)) != NULL)
 		{
+			characters = -1;
 			_printf("%s$ ", cwd);  /*prompt*/
 			characters = getline(&line, &size, stdin);
 			fflush(stdin);
@@ -37,7 +38,6 @@ int main(int ac, char **av, char **env)
 				continue;
 			argv = _path(1, argv, env);
 			(void)characters;
-
 			child = fork();        /*creates and checks child*/
 			if (child == -1)
 			{
