@@ -34,6 +34,7 @@ int main(int ac, char **av, char **env)
 				exit(7);
 			}
 			argv = tok(line, " \n");   /*runs tok func on line*/
+
 			if (argv == NULL)
 				continue;
 			argv = _path(1, argv, env);
