@@ -9,7 +9,7 @@
  */
 int main(int ac, char **av, char **env)
 {
-	char **argv, *line = NULL;
+	char **argv = NULL, *line = NULL;
 	pid_t child;
 	ssize_t characters = 0;
 	size_t size = 0;
@@ -37,7 +37,11 @@ int main(int ac, char **av, char **env)
 
 			if (argv == NULL)
 				continue;
+
+
 			argv = _path(1, argv, env);
+     			if (_strcmp("exit", argv[0]) == 0)/*exit*/
+				exit(atoi(argv[1]));
 			(void)characters;
 			child = fork();        /*creates and checks child*/
 			if (child == -1)
