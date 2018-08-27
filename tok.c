@@ -13,8 +13,7 @@
 
 char **tok(char *st, char *dil)
 {
-	/*variables*/
-	int i;
+	int i;      /*variables*/
 	char *str = malloc(_strlen(st) + 1);
 	int spaces = -1;
 	char *token;
@@ -22,17 +21,16 @@ char **tok(char *st, char *dil)
 
 	for (i = 0 ; st[i] != '\0' ; i++)
 	{
-		if (st[i] != ' ' && st[i] != '\n') /*checking if just spaces*/
+		if (st[i] != ' ' && st[i] != '\n')
 		{
-			spaces = 1;
+			spaces = 1; /*checking if command is just spaces*/
 			break;
 		}
 	}
 	if (spaces == -1)
 		return (NULL);
 	_strcpy(str, st);
-	/*counts spaces or newlines in string*/
-	for (i = 0 ; str[i] ; i++)
+	for (i = 0 ; str[i] ; i++)/*counts spaces or newlines in string*/
 	{
 		if (str[i] == ' ' || str[i] == '\n' || str[i] == ':')
 		{
@@ -40,19 +38,15 @@ char **tok(char *st, char *dil)
 		}
 	}
 	tokens = malloc(sizeof(char*) * spaces + 1);
-
-	/*sepperates st into an array of strings*/
-	token = strtok(str, dil);
+	token = strtok(str, dil);/*sepperates st into an array of strings*/
 	for (i = 0 ; token != NULL ; i++)
 	{
-		tokens[i] = malloc(strlen(token) + 1);
-		tokens[i] = strcpy(tokens[i], token);
+		tokens[i] = malloc(_strlen(token) + 1);
+		tokens[i] = _strcpy(tokens[i], token);
 		token = strtok(NULL, dil);
 	}
 	tokens[i] = NULL;
-
-	/*free and return*/
-	free(token);
+	free(token);	/*free and return*/
 	free(str);
 	return (tokens);
 }

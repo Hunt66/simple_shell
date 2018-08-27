@@ -5,14 +5,14 @@
  *@str: string to measure
  *Return: length of string
  */
-/*int _strlen(char *str)
+int _strlen(char *str)
 {
-	int i;
+	int len;
 
-	for (i = 0 ; str[i] ; i++)
+	for (len = 0 ; str[len] ; len++)
 		;
-	return (i);
-}*/
+	return (len);
+}
 
 /**
  *free_shell- frees all elements of the simple shell
@@ -50,4 +50,25 @@ char *_strcpy(char *dest, char *src)
 	dest[i] = '\0';
 
 	return (dest);
+}
+
+/**
+ * _strcmp - compares two strings
+ * @s1: first string
+ * @s2: second string
+ * Return: an integer less than, equal to, or greater than 0, dependent on
+ * the result of the function
+ */
+int _strcmp(const char *s1, char *s2)
+{
+	int count;
+	int result;
+
+	for (count = 0; s1[count] != '\0' && s2[count] != '\0'; count++)
+		if (s1[count] != s2[count])
+		{
+			result = s1[count] - s2[count];
+			return (result);
+		}
+	return (0);
 }
