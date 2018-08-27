@@ -40,13 +40,13 @@ int builtin(char **env, char **argv, char *line)
 
 	if (_strcmp("env", argv[0]) == 0)/*envronment*/
 	{
-		free_shell(argv, line);
+
 		for (i = 0 ; env[i] ; i++)
 		{
 			write(1, env[i], _strlen(env[i]));
 			write(1, "\n", 1);
 		}
-		return (1);
+	       	return (1);
 	}
 	if (_strcmp("exit", argv[0]) == 0)/*exit*/
 	{
