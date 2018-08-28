@@ -19,8 +19,6 @@ char **tok(char *st, char *dil)
 	char *token = NULL;
 	char **tokens = NULL;
 
-
-
 	for (i = 0 ; st[i] != '\0' ; i++)
 	{
 		if (st[i] != ' ' && st[i] != '\n')
@@ -31,10 +29,9 @@ char **tok(char *st, char *dil)
 	}
 	if (spaces == -1)
 		return (NULL);
-	str = _strcpy(str, st);
 	for (i = 0 ; str[i] ; i++)/*counts spaces or newlines in string*/
 	{
-		if (str[i] == ' ' ||/* str[i] == '\n' ||*/ str[i] == ':')
+		if (str[i] == ' ' || str[i] == '\t' || str[i] == ':')
 			spaces++;
 	}
 	tokens = malloc(sizeof(char *) * (spaces + 1));
@@ -45,7 +42,6 @@ char **tok(char *st, char *dil)
 		token = strtok(NULL, dil);
 	}
 	tokens[i] = NULL;
-
 	free(str);
 	return (tokens);
 }
