@@ -1,0 +1,29 @@
+.TH Simple Shell "1" "27 August 2018" "Simple Shell man page" "Simple Shell man page"
+.SH NAME
+.B hsh
+- A simple shell.
+.SH SYNOPSIS
+.B ./hsh
+- built according to Holberton School project guidlines. Meant to closely emulate the Thompson shell.
+.SH DESCRIPTION
+.B hsh
+replicates the functionality of the Thompson Shell. It is a command language interpreter that reads commands either from the standard input, or piped in. It then interprets and executes them.
+.SH INVOCATION
+.B hsh
+can be invoked in one of two ways: In interactive mode by running
+.B ./hsh
+and typing commands from the keyboard, or in non-interactive mode by piping commands into the program using echo or cat.
+.SH BUILT-IN COMMANDS
+.B exit
+- exits the shell
+.SH OPTIONS
+.B hsh
+does not currently take any options.
+.SH RETURN VALUE
+The program will return 0 on success and another number upon an error or failure.
+.SH SEE ALSO
+.I sh(1), bash(1)
+.SH BUGS
+So many bugs...
+.SH AUTHOR
+Essence Boayue, Erwin Gove
