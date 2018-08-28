@@ -17,23 +17,23 @@ int stat_exec(char **argv, char *line, size_t i, char **env)
 
 	if (stat(argv[0], &st) != 0)
 	{
-		write(1, envi, _strlen(envi) + 1);
-		write(1, ": ", 2);
+		write(STDERR_FILENO, envi, _strlen(envi) + 1);
+		write(STDERR_FILENO, ": ", 2);
 		print_number(i);
-		write(1, ": ", 2);
-		write(1, argv[0], strlen(argv[0]) + 1);
-		write(1, ": not found\n", 12);
+		write(STDERR_FILENO, ": ", 2);
+		write(STDERR_FILENO, argv[0], strlen(argv[0]) + 1);
+		write(STDERR_FILENO, ": not found\n", 12);
 	}
 	else
 	{         /*execute command*/
 		if (execve(argv[0], argv, NULL) == -1 && isatty(0))
 		{
-			write(1, envi, _strlen(envi) + 1);
-			write(1, ": ", 2);
+			write(STDERR_FILENO, envi, _strlen(envi) + 1);
+			write(STDERR_FILENO, ": ", 2);
 			print_number(i);
-			write(1, ": ", 2);
-			write(1, argv[0], strlen(argv[0]) + 1);
-			write(1, ": not found\n", 12);
+			write(STDERR_FILENO, ": ", 2);
+			write(STDERR_FILENO, argv[0], strlen(argv[0]) + 1);
+			write(STDERR_FILENO, ": not found\n", 12);
 		}
 	}
 	return (0);
