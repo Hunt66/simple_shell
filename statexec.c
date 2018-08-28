@@ -9,19 +9,14 @@
 int stat_exec(char **argv, char *line)
 {
 	struct stat st;
+	(void)line;
 
 	if (stat(argv[0], &st) != 0)  /*check if command is valid*/
-	{
-		free_shell(argv, line); /*frees child*/
 		perror("Error2:");
-	}
 	else
 	{         /*execute command*/
 		if (execve(argv[0], argv, NULL) == -1)
-		{
 			perror("Error3:");
-		}
-		free_shell(argv, line); /*frees child*/
 	}
 	return (0);
 }
