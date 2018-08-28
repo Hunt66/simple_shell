@@ -16,6 +16,8 @@ int main(int ac, char **av, char **env)
     	(void)ac;
 	(void)av;
 
+	signal(SIGINT, prompt);
+
 	while (characters != -1)
 	{
 		free(line);

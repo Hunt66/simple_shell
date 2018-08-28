@@ -10,6 +10,7 @@
 #include <string.h>
 
 
+void prompt(int a);
 char *_strtok(char *str, const char *delim);
 char **tok(char *st, char *dil);              /*prototypes for shell*/
 void free_shell(char **argv, char *line);

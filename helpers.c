@@ -72,3 +72,19 @@ int _strcmp(const char *s1, char *s2)
 		}
 	return (0);
 }
+
+/**
+ * prompt - prints a new prompt
+ *
+ * Return: 0 on success, 1 on failure
+ */
+void prompt(int a)
+{
+	char cwd[PATH_MAX];
+	(void)a;
+
+	getcwd(cwd, sizeof(cwd));
+	write(1, "\n", 1);
+	write(1, cwd, _strlen(cwd));
+	write(1, "$ ", 2);
+}
