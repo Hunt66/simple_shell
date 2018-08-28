@@ -88,7 +88,7 @@ void prompt(int a)
 	if (isatty(0))
 	{
 		getcwd(cwd, sizeof(cwd));
-		write(1, cwd, _strlen(cwd));
-		write(1, "$ ", 2);
+		write(STDOUT_FILENO, cwd, _strlen(cwd));
+		write(STDOUT_FILENO, "$ ", 2);
 	}
 }
