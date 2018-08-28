@@ -19,8 +19,10 @@ void sighelp(int a)
  */
 void getline_fail(char **argv, char *line)
 {
+	(void)argv;
+	(void)line;
 	write(STDOUT_FILENO, "\n", 1);
-	free_shell(argv, line);   /*ctrl-d test 0*/
+	/*free_shell(argv, line);*/   /*ctrl-d test 0*/
 	exit(7);
 }
 
@@ -69,5 +71,5 @@ int print_number(size_t a)
 
 int _putchar(char c)
 {
-	return (write(1, &c, 1));
+	return (write(STDOUT_FILENO, &c, 1));
 }

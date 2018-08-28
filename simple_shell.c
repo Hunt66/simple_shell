@@ -29,10 +29,10 @@ int main(int ac, char **av, char **env)
 			prompt(1);
 			characters = getline(&line, &size, stdin);
 			fflush(stdin);         /*get commands in line*/
-			/*if (characters == -1)*/
-			/*{*/
-			/*	getline_fail(argv , line);*/
-			/*	}*/
+			if (characters == -1)
+			{
+				getline_fail(argv , line);
+			}
 			argv = tok(line, " \n");   /*runs tok func on line*/
 			if (argv == NULL)
 				continue;
