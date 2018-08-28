@@ -16,7 +16,7 @@ int main(int ac, char **av, char **env)
     	(void)ac;
 	(void)av;
 
-	signal(SIGINT, prompt);
+	signal(SIGINT, sighelp);
 
 	while (characters != -1)
 	{
@@ -25,15 +25,12 @@ int main(int ac, char **av, char **env)
 		if (getcwd(cwd, sizeof(cwd)) != NULL)
 		{
 			characters = -1;
-			write(1, cwd, _strlen(cwd)); /*prompt*/
-			write(1, "$ ", 2);
+			prompt(1);
 			characters = getline(&line, &size, stdin);
 			fflush(stdin);         /*get commands in line*/
 			if (characters == -1)
 			{
-				write(STDOUT_FILENO, "\n", 1);
-				free_shell(argv, line);   /*ctrl-d test 0*/
-				exit(7);
+				getline_fail(argv , line);
 			}
 			argv = tok(line, " \n");   /*runs tok func on line*/
 			if (argv == NULL)

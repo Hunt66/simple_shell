@@ -9,7 +9,8 @@
 #include <limits.h>
 #include <string.h>
 
-
+void getline_fail(char **argv, char *line);
+void sighelp(int a);
 void prompt(int a);
 char *_strtok(char *str, const char *delim);
 char **tok(char *st, char *dil);              /*prototypes for shell*/

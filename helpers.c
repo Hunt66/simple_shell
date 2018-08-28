@@ -84,7 +84,6 @@ void prompt(int a)
 	(void)a;
 
 	getcwd(cwd, sizeof(cwd));
-	write(1, "\n", 1);
 	write(1, cwd, _strlen(cwd));
 	write(1, "$ ", 2);
 }
