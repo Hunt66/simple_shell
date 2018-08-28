@@ -13,14 +13,15 @@ int main(int ac, char **av, char **env)
 	pid_t child;
 	ssize_t characters = 0;
 	size_t size = 0;           /*variables*/
-    	(void)ac;
+	size_t i;
+	(void)ac;
 	(void)av;
 
 	signal(SIGINT, sighelp);
 
-	while (characters != -1)
+	for (i = 1; characters != -1; i++)
 	{
-		free(line);
+		/*free(line);*/
 		size = 0;
 		if (getcwd(cwd, sizeof(cwd)) != NULL)
 		{
@@ -28,10 +29,10 @@ int main(int ac, char **av, char **env)
 			prompt(1);
 			characters = getline(&line, &size, stdin);
 			fflush(stdin);         /*get commands in line*/
-			if (characters == -1)
+			/*if (characters == -1)
 			{
 				getline_fail(argv , line);
-			}
+				}*/
 			argv = tok(line, " \n");   /*runs tok func on line*/
 			if (argv == NULL)
 				continue;
@@ -42,12 +43,11 @@ int main(int ac, char **av, char **env)
 			if (child == -1)        /*creates and checks child*/
 			{
 				free_shell(argv, line);
-				perror("Error1:");
 				return (-1);
 			}
 			if (child == 0)
 			{
-				stat_exec(argv, line);/*runs command*/
+				stat_exec(argv, line, i, env);/*runs command*/
 				exit (1);
 			}
 			else
@@ -57,10 +57,7 @@ int main(int ac, char **av, char **env)
 			}
 		}
 		else
-		{                          /*if no current working directory*/
-			perror("Error4:");
 			return (-1);
-		}
 	}
 	if (argv != NULL)
 		free_shell(argv, line);      /*free all in parent*/

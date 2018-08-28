@@ -83,7 +83,10 @@ void prompt(int a)
 	char cwd[PATH_MAX];
 	(void)a;
 
-	getcwd(cwd, sizeof(cwd));
-	write(1, cwd, _strlen(cwd));
-	write(1, "$ ", 2);
+	if (isatty(0))
+	{
+		getcwd(cwd, sizeof(cwd));
+		write(1, cwd, _strlen(cwd));
+		write(1, "$ ", 2);
+	}
 }

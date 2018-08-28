@@ -9,13 +9,16 @@
 #include <limits.h>
 #include <string.h>
 
+int _putchar(char c);
+int print_number(size_t a);
+char *_getenv(const char *name, char **env);
 void getline_fail(char **argv, char *line);
 void sighelp(int a);
 void prompt(int a);
 char *_strtok(char *str, const char *delim);
 char **tok(char *st, char *dil);              /*prototypes for shell*/
 void free_shell(char **argv, char *line);
-int stat_exec(char **argv, char *line);
+int stat_exec(char **argv, char *line, size_t i, char **env);
 char **_path(int argc, char **argv, char **env);
 char *_strcpy(char *dest, char *src);
 int _strcmp(const char *s1,char *s2);

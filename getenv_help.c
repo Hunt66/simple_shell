@@ -1,7 +1,5 @@
 #include "holberton_shell.h"
 
-
-
 /**
  * *_getenv - gets the specified environment variable
  * @name: the name of the variable
