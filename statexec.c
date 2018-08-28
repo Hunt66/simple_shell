@@ -11,6 +11,7 @@
 int stat_exec(char **argv, char *line, size_t i, char **env)
 {
 	struct stat st;
+	int j;
 	char *path = "_";
 	char *envi = _getenv(path, env);
 	(void)line;
@@ -36,6 +37,9 @@ int stat_exec(char **argv, char *line, size_t i, char **env)
 			write(STDERR_FILENO, ": not found\n", 12);
 		}
 	}
+	for (j = 0 ; argv[j] != NULL ; j++)
+		free(argv[j]);
+	free(argv);
 	return (0);
 }
 

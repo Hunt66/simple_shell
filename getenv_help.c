@@ -46,6 +46,7 @@ char **_path(int argc, char **argv, char **env)
 		/*checks to see if the command exists*/
 		if (stat(strs[k], &st) == 0)
 		{
+			free(argv[0]);
 			argv[0] = _strdup(strs[k]);
 			/*frees everything*/
 			for (i = 0 ; strs[i] != NULL ; i++)
