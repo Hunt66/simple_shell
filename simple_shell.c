@@ -41,19 +41,21 @@ int main(int ac, char **av, char **env)
 			child = fork();
 			if (child == -1)        /*creates and checks child*/
 			{
+				free_shell(argv, line);
 				perror("Error1:");
 				return (-1);
 			}
 			if (child == 0)
 			{
-				if (stat_exec(argv, line) == -1)/*runs command*/
-					break;
-				free_shell(argv, line);
-				exit(1);
+				stat_exec(argv, line);/*runs command*/
+				exit (1);
 			}
 			else
+			{
+				free_shell(argv, line);
 				wait(NULL);  /*waits for current process */
-		}                            /*before continuing */
+			}
+		}
 		else
 		{                          /*if no current working directory*/
 			perror("Error4:");
