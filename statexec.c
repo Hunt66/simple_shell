@@ -4,6 +4,8 @@
  *stat_exec- checks if command exists and executes it if it does
  *@argv: the array of commands
  *@line: the line argv was made from (only to free)
+ *@i: number of lines in shell
+ *@env: environment
  *Return: 0 if success, -1 if need to break
  */
 int stat_exec(char **argv, char *line, size_t i, char **env)
@@ -42,6 +44,7 @@ int stat_exec(char **argv, char *line, size_t i, char **env)
  *builtin- checks if the user input a built-in command and executes it
  *@env: the current environment
  *@argv: the list of arguments provided
+ *@line: the line from getline
  *Return: 1 if builtin 0 if not
  */
 

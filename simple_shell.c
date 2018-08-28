@@ -29,14 +29,14 @@ int main(int ac, char **av, char **env)
 			prompt(1);
 			characters = getline(&line, &size, stdin);
 			fflush(stdin);         /*get commands in line*/
-			/*if (characters == -1)
-			{
-				getline_fail(argv , line);
-				}*/
+			/*if (characters == -1)*/
+			/*{*/
+			/*	getline_fail(argv , line);*/
+			/*	}*/
 			argv = tok(line, " \n");   /*runs tok func on line*/
 			if (argv == NULL)
 				continue;
-		        if (builtin(env, argv, line) == 1) /*builtins*/
+			if (builtin(env, argv, line) == 1) /*builtins*/
 				continue;
 			argv = _path(1, argv, env); /*path check/append*/
 			child = fork();
@@ -48,7 +48,7 @@ int main(int ac, char **av, char **env)
 			if (child == 0)
 			{
 				stat_exec(argv, line, i, env);/*runs command*/
-				exit (1);
+				exit(1);
 			}
 			else
 			{

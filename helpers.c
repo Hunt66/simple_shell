@@ -23,6 +23,7 @@ int _strlen(char *str)
 void free_shell(char **argv, char *line)
 {
 	int i;
+
 	if (argv != NULL)
 	{
 		for (i = 0 ; argv[i] != NULL ; i++)
@@ -75,6 +76,7 @@ int _strcmp(const char *s1, char *s2)
 
 /**
  * prompt - prints a new prompt
+ *@a: does nothing
  *
  * Return: 0 on success, 1 on failure
  */

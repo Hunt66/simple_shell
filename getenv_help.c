@@ -42,8 +42,8 @@ char **_path(int argc, char **argv, char **env)
 		for (i = 0; strs[k][i] != '\0'; i++)
 			;
 		strs[k][i] = '/';
-		/*appends the command the user
-		  types to the gotten path element*/
+		/*appends the command the user*/
+		/* types to the gotten path element*/
 		for (j = 0 ; argv[0][j] != '\0' ; j++)
 		{
 			strs[k][i + j + 1] = argv[0][j];

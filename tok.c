@@ -37,7 +37,7 @@ char **tok(char *st, char *dil)
 			spaces++;
 		}
 	}
-	tokens = malloc(sizeof(char*) * spaces + 1);
+	tokens = malloc(sizeof(char *) * spaces + 1);
 	token = strtok(str, dil);/*sepperates st into an array of strings*/
 	for (i = 0 ; token != NULL ; i++)
 	{

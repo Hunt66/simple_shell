@@ -14,6 +14,8 @@ void sighelp(int a)
 
 /**
  * getline_fail - writes a new line and then frees
+ *@argv: list of args to free
+ *@line: line to free
  */
 void getline_fail(char **argv, char *line)
 {
@@ -24,7 +26,7 @@ void getline_fail(char **argv, char *line)
 
 /**
  * print_number - print a numner
- * @list: Va_list of values
+ * @a: number to print
  * Return: Number of characters printed
  */
 int print_number(size_t a)
