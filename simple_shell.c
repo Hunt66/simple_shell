@@ -14,7 +14,8 @@ int main(int ac, char **av, char **env)
 	ssize_t characters = 0;
 	size_t size = 0;           /*variables*/
 	size_t i;
-	struct stat st;
+	int status = 1, extstat = 0;
+	/*struct stat st;*/
 	(void)ac;
 	(void)av;
 
@@ -40,15 +41,15 @@ int main(int ac, char **av, char **env)
 			free(line);
 			continue;
 		}
-		if (builtin(env, argv, line) == 1) /*builtins*/
+		if (builtin(env, argv, line, extstat) == 1) /*builtins*/
 			continue;
 		argv = _path(1, argv, env); /*path check/append*/
-		if (stat(argv[0], &st) != 0)
+		/*if (stat(argv[0], &st) != 0)
 		{
 			free_shell(argv, line);
 			printf("not found\n");
 			continue;
-		}
+			}*/
 		child = fork();
 		if (child == -1)        /*creates and checks child*/
 		{
@@ -58,12 +59,14 @@ int main(int ac, char **av, char **env)
 		if (child == 0)
 		{
 			stat_exec(argv, line, i, env);/*runs command*/
-			exit(1);
+			_exit(1);
 		}
 		else
 		{
 			free_shell(argv, line);
-			wait(NULL);  /*waits for current process */
+			wait(&status);  /*waits for current process */
+			if (WIFEXITED(status))
+				extstat = WEXITSTATUS(status);
 		}
 	}
 	free_shell(argv, line);      /*free all in parent*/

@@ -48,7 +48,7 @@ int stat_exec(char **argv, char *line, size_t i, char **env)
  *Return: 1 if builtin 0 if not
  */
 
-int builtin(char **env, char **argv, char *line)
+int builtin(char **env, char **argv, char *line, int extstat)
 {
 	int i;
 
@@ -68,7 +68,7 @@ int builtin(char **env, char **argv, char *line)
 		if (argv[1] == NULL)
 		{
 			free_shell(argv, line);
-			exit(0);
+			exit(extstat);
 		}
 		i = atoi(argv[1]);
 		free_shell(argv, line);
