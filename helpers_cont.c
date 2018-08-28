@@ -82,7 +82,8 @@ int _putchar(char c)
  */
 char *_strdup(char *str)
 {
-	char *dupe;
+	char *dupe = NULL;
+
 
 	if (!str)
 		return (NULL);
@@ -91,5 +92,6 @@ char *_strdup(char *str)
 
 	if (dupe == NULL)
 		return (NULL);
-	return (_strcpy(dupe, str));
+	dupe = _strcpy(dupe, str);
+	return (dupe);
 }

@@ -35,10 +35,11 @@ int main(int ac, char **av, char **env)
 			getline_fail(argv, line);
 			continue;
 		}
-		argv = tok(line, " \n");   /*runs tok func on line*/
+		argv = tok(line, "\n ");   /*runs tok func on line*/
 		if (argv == NULL)
 		{
 			free(line);
+			line = NULL;
 			continue;
 		}
 		if (builtin(env, argv, line, extstat) == 1) /*builtins*/

@@ -11,7 +11,7 @@
 #include <limits.h>
 #include <string.h>
 
-
+char *str_concat(char *s1, char *s2);
 char *_strdup(char *str);
 int _putchar(char c);
 int print_number(size_t a);

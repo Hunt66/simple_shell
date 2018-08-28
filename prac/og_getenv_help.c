@@ -27,7 +27,7 @@ char *_getenv(const char *name, char **env)
  */
 char **_path(int argc, char **argv, char **env)
 {
-	int i, k;
+	int i, k, j = 0;
 	char *path = "PATH";
 	char *str;
 	char **strs;
@@ -39,10 +39,16 @@ char **_path(int argc, char **argv, char **env)
 	for (k = 0 ; strs[k] != NULL ; k++)
 	{
 		/*iterates to the end of a given element in the array*/
-		strs[k] = str_concat(strs[k], "/");
+		for (i = 0; strs[k][i] != '\0'; i++)
+			;
+		strs[k][i] = '/';
 		/*appends the command the user*/
 		/* types to the gotten path element*/
-		strs[k] = str_concat(strs[k], argv[0]);
+		for (j = 0 ; argv[0][j] != '\0' ; j++)
+		{
+			strs[k][i + j + 1] = argv[0][j];
+		}
+		strs[k][i + j + 1] = '\0';
 		/*checks to see if the command exists*/
 		if (stat(strs[k], &st) == 0)
 		{
@@ -51,15 +57,11 @@ char **_path(int argc, char **argv, char **env)
 			for (i = 0 ; strs[i] != NULL ; i++)
 				free(strs[i]);
 			free(strs);
-
-
 			return (argv);
 		}
 	}
 	for (i = 0 ; strs[i] != NULL ; i++)
 		free(strs[i]);
-
-
 	free(strs);
 	return (argv);
 }
