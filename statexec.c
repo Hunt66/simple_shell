@@ -41,9 +41,10 @@ int builtin(char **env, char **argv, char *line)
 			write(1, env[i], _strlen(env[i]));
 			write(1, "\n", 1);
 		}
-	       	return (1);
+		free_shell(argv, line);
+		return (1);
 	}
-	if (_strcmp("exit", argv[0]) == 0)/*exit*/
+	else if (_strcmp("exit", argv[0]) == 0)/*exit*/
 	{
 		free_shell(argv, line);
 		if (argv[1] == NULL)
