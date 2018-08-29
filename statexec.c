@@ -65,10 +65,14 @@ int builtin(char **env, char **argv, char *line)
 	}
 	else if (_strcmp("exit", argv[0]) == 0)/*exit*/
 	{
-		free_shell(argv, line);
 		if (argv[1] == NULL)
+		{
+			free_shell(argv, line);
 			exit(0);
-		exit(atoi(argv[1]));
+		}
+		i = atoi(argv[1]);
+		free_shell(argv, line);
+		exit(i);
 	}
 	return (0);
 }

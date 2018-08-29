@@ -9,11 +9,12 @@
  */
 int main(int ac, char **av, char **env)
 {
-	char **argv = NULL, *line = NULL, cwd[PATH_MAX];
+	char **argv = NULL, *line = NULL;
 	pid_t child;
 	ssize_t characters = 0;
 	size_t size = 0;           /*variables*/
 	size_t i;
+	struct stat st;
 	(void)ac;
 	(void)av;
 
@@ -21,45 +22,50 @@ int main(int ac, char **av, char **env)
 
 	for (i = 1; characters != -1; i++)
 	{
-		/*free(line);*/
+		/*if (line != NULL && i > 2)
+		  free(line);*/
 		size = 0;
-		if (getcwd(cwd, sizeof(cwd)) != NULL)
+		characters = -1;
+		prompt(1);
+		characters = getline(&line, &size, stdin);
+		fflush(stdin);         /*get commands in line*/
+		if (characters == -1)
 		{
-			characters = -1;
-			prompt(1);
-			characters = getline(&line, &size, stdin);
-			fflush(stdin);         /*get commands in line*/
-			if (characters == -1)
-			{
-				getline_fail(argv , line);
-			}
-			argv = tok(line, " \n");   /*runs tok func on line*/
-			if (argv == NULL)
-				continue;
-			if (builtin(env, argv, line) == 1) /*builtins*/
-				continue;
-			argv = _path(1, argv, env); /*path check/append*/
-			child = fork();
-			if (child == -1)        /*creates and checks child*/
-			{
-				free_shell(argv, line);
-				return (-1);
-			}
-			if (child == 0)
-			{
-				stat_exec(argv, line, i, env);/*runs command*/
-				exit(1);
-			}
-			else
-			{
-				free_shell(argv, line);
-				wait(NULL);  /*waits for current process */
-			}
+			getline_fail(argv, line);
+			continue;
+		}
+		argv = tok(line, " \n");   /*runs tok func on line*/
+		if (argv == NULL)
+		{
+			free(line);
+			continue;
+		}
+		if (builtin(env, argv, line) == 1) /*builtins*/
+			continue;
+		argv = _path(1, argv, env); /*path check/append*/
+		if (stat(argv[0], &st) != 0)
+		{
+			free_shell(argv, line);
+			printf("not found\n");
+			continue;
+		}
+		child = fork();
+		if (child == -1)        /*creates and checks child*/
+		{
+			free_shell(argv, line);
+			return (-1);
+		}
+		if (child == 0)
+		{
+			stat_exec(argv, line, i, env);/*runs command*/
+			exit(1);
 		}
 		else
-			return (-1);
+		{
+			free_shell(argv, line);
+			wait(NULL);  /*waits for current process */
+		}
 	}
-	if (argv != NULL)
-		free_shell(argv, line);      /*free all in parent*/
+	free_shell(argv, line);      /*free all in parent*/
 	return (0);
 }
