@@ -50,7 +50,7 @@ int stat_exec(char **argv, char *line, size_t i, char **env)
 
 int builtin(char **env, char **argv, char *line, int extstat)
 {
-	int i, status = 1;
+	int i;
 
 	if (_strcmp("env", argv[0]) == 0)/*envronment*/
 	{

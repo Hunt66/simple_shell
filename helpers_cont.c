@@ -73,3 +73,23 @@ int _putchar(char c)
 {
 	return (write(STDOUT_FILENO, &c, 1));
 }
+
+/**
+ * _strdup - copies a string to a newly allocated space in memory
+ * @str: the given string
+ *
+ * Return: a pointer to the string, or NULL if the given string is NULL
+ */
+char *_strdup(char *str)
+{
+	char *dupe;
+
+	if (!str)
+		return (NULL);
+
+	dupe = malloc(_strlen(str) + 1);
+
+	if (dupe == NULL)
+		return (NULL);
+	return (_strcpy(dupe, str));
+}

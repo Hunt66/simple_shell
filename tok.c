@@ -14,7 +14,7 @@
 char **tok(char *st, char *dil)
 {
 	int i;      /*variables*/
-	char *str = malloc(_strlen(st) + 1);
+	char *str = _strdup(st);
 	int spaces = -1;
 	char *token;
 	char **tokens;
@@ -28,27 +28,21 @@ char **tok(char *st, char *dil)
 		}
 	}
 	if (spaces == -1)
-	{
-		free(str);
 		return (NULL);
-	}
 	_strcpy(str, st);
 	for (i = 0 ; str[i] ; i++)/*counts spaces or newlines in string*/
 	{
 		if (str[i] == ' ' || str[i] == '\n' || str[i] == ':')
 			spaces++;
 	}
-	tokens = malloc(sizeof(char *) * (spaces + 1) + 1);
+	tokens = malloc(sizeof(char *) * (spaces + 1));
 	token = strtok(str, dil);/*separates st into an array of strings*/
 	for (i = 0 ; token != NULL ; i++)
 	{
-		tokens[i] = malloc(_strlen(token) + 1);
-		tokens[i] = _strcpy(tokens[i], token);
-		/*tokens[i] = token;*/
+		tokens[i] = _strdup(token);
 		token = strtok(NULL, dil);
 	}
 	tokens[i] = NULL;
-	free(token);
 	free(str);
 	return (tokens);
 }
