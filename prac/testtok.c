@@ -35,17 +35,34 @@ char **tok(char *st, char *dil)
 		if (str[i] == ' ' || str[i] == '\n' || str[i] == ':')
 			spaces++;
 	}
+	printf("%i\n", spaces);
 	tokens = malloc(sizeof(char *) * (spaces + 1));
 	token = strtok(str, dil);/*separates st into an array of strings*/
 	for (i = 0 ; token != NULL ; i++)
 	{
-		tokens[i] = malloc(_strlen(token) + 1);
-		tokens[i] = _strcpy(tokens[i], token);
-		/*tokens[i] = token;*/
+		printf("%s\n", token);
+		/*tokens[i] = malloc(_strlen(token) + 1);*/
+		tokens[i] = token;
 		token = strtok(NULL, dil);
 	}
 	tokens[i] = NULL;
-	free(token);
 	free(str);
 	return (tokens);
+}
+
+int main(void)
+{
+	char *a = "This is a test";
+	char **b;
+	int i = 0;
+
+	b = tok(a, " ");
+
+	while (b[i] != '\0')
+	{
+		write(1, b[i], strlen(b[i]));
+		i++;
+	}
+	free(b);
+	return (0);
 }
