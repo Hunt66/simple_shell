@@ -45,6 +45,7 @@ int stat_exec(char **argv, char *line, size_t i, char **env)
  *@env: the current environment
  *@argv: the list of arguments provided
  *@line: the line from getline
+ *@extstat: status for empty exit
  *Return: 1 if builtin 0 if not
  */
 
