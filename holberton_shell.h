@@ -1,5 +1,7 @@
 #ifndef _HOLBERTON_SHELL_H
 #define _HOLBERTON_SHELL_H
+#define _GNU_SOURCE
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -8,6 +10,8 @@
 #include <sys/stat.h>
 #include <limits.h>
 #include <string.h>
+
+
 
 int _putchar(char c);
 int print_number(size_t a);

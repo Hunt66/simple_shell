@@ -32,7 +32,8 @@ void free_shell(char **argv, char *line)
 		}
 		free(argv);
 	}
-	free(line);
+	if (line != NULL)
+		free(line);
 }
 
 /**
@@ -82,13 +83,10 @@ int _strcmp(const char *s1, char *s2)
  */
 void prompt(int a)
 {
-	char cwd[PATH_MAX];
 	(void)a;
 
 	if (isatty(0))
 	{
-		getcwd(cwd, sizeof(cwd));
-		write(STDOUT_FILENO, cwd, _strlen(cwd));
-		write(STDOUT_FILENO, "$ ", 2);
+		write(STDOUT_FILENO, "Conch $ ", 8);
 	}
 }
