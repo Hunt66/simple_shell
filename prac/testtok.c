@@ -32,7 +32,7 @@ char **tok(char *st, char *dil)
 	_strcpy(str, st);
 	for (i = 0 ; str[i] ; i++)/*counts spaces or newlines in string*/
 	{
-		if (str[i] == ' ' || str[i] == '\n' || str[i] == ':')
+		if (str[i] == ' ' ||/* str[i] == '\n' ||*/ str[i] == ':')
 			spaces++;
 	}
 	printf("%i\n", spaces);
@@ -52,15 +52,15 @@ char **tok(char *st, char *dil)
 
 int main(void)
 {
-	char *a = "This is a test";
+	char *a = "This is a test\n";
 	char **b;
 	int i = 0;
 
-	b = tok(a, " ");
+	b = tok(a, " \n");
 
 	while (b[i] != '\0')
 	{
-		write(1, b[i], strlen(b[i]));
+		write(1, b[i], strlen(b[i] - 1));
 		i++;
 	}
 	free(b);

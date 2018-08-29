@@ -50,7 +50,7 @@ int stat_exec(char **argv, char *line, size_t i, char **env)
 
 int builtin(char **env, char **argv, char *line)
 {
-	int i;
+	int i, status = 1;
 
 	if (_strcmp("env", argv[0]) == 0)/*envronment*/
 	{
@@ -67,8 +67,12 @@ int builtin(char **env, char **argv, char *line)
 	{
 		if (argv[1] == NULL)
 		{
+			i = 0;
 			free_shell(argv, line);
-			exit(0);
+			wait(&status);
+			if (WIFEXITED(status))
+				i = WEXITSTATUS(status);
+			exit(i);
 		}
 		i = atoi(argv[1]);
 		free_shell(argv, line);
