@@ -22,8 +22,6 @@ void getline_fail(char **argv, char *line)
 	(void)argv;
 	(void)line;
 	write(STDOUT_FILENO, "\n", 1);
-	/*free_shell(argv, line);*/   /*ctrl-d test 0*/
-	exit(7);
 }
 
 /**
