@@ -45,7 +45,7 @@ int main(int ac, char **av, char **env)
 		argv = _path(1, argv, env); /*path check/append*/
 		if (stat(argv[0], &st) != 0)
 		{
-			/*free_shell(argv, line);*/
+			free_shell(argv, line);
 			printf("not found\n");
 			continue;
 		}
