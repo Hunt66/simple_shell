@@ -87,6 +87,6 @@ void prompt(int a)
 
 	if (isatty(0))
 	{
-		write(STDOUT_FILENO, "$ ", 2);
+		write(STDOUT_FILENO, "Conch$ ", 7);
 	}
 }

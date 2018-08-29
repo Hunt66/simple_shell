@@ -28,7 +28,10 @@ char **tok(char *st, char *dil)
 		}
 	}
 	if (spaces == -1)
+	{
+		free(str);
 		return (NULL);
+	}
 	_strcpy(str, st);
 	for (i = 0 ; str[i] ; i++)/*counts spaces or newlines in string*/
 	{
