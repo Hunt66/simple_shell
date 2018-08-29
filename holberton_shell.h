@@ -11,8 +11,8 @@
 #include <limits.h>
 #include <string.h>
 
-
-
+char *str_concat(char *s1, char *s2);
+char *_strdup(char *str);
 int _putchar(char c);
 int print_number(size_t a);
 char *_getenv(const char *name, char **env);
@@ -26,7 +26,7 @@ int stat_exec(char **argv, char *line, size_t i, char **env);
 char **_path(int argc, char **argv, char **env);
 char *_strcpy(char *dest, char *src);
 int _strcmp(const char *s1, char *s2);
-int builtin(char **env, char **argv, char *line);
+int builtin(char **env, char **argv, char *line, int extstat);
 int _strlen(char *);
 
 #endif /*HOLBERTON_SHELL_H*/

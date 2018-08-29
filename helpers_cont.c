@@ -22,8 +22,6 @@ void getline_fail(char **argv, char *line)
 	(void)argv;
 	(void)line;
 	write(STDOUT_FILENO, "\n", 1);
-	/*free_shell(argv, line);*/   /*ctrl-d test 0*/
-	exit(7);
 }
 
 /**
@@ -72,4 +70,26 @@ int print_number(size_t a)
 int _putchar(char c)
 {
 	return (write(STDOUT_FILENO, &c, 1));
+}
+
+/**
+ * _strdup - copies a string to a newly allocated space in memory
+ * @str: the given string
+ *
+ * Return: a pointer to the string, or NULL if the given string is NULL
+ */
+char *_strdup(char *str)
+{
+	char *dupe = NULL;
+
+
+	if (!str)
+		return (NULL);
+
+	dupe = malloc(_strlen(str) + 1);
+
+	if (dupe == NULL)
+		return (NULL);
+	dupe = _strcpy(dupe, str);
+	return (dupe);
 }

@@ -14,10 +14,10 @@
 char **tok(char *st, char *dil)
 {
 	int i;      /*variables*/
-	char *str = _strdup(st);
+	char *str = strdup(st);
 	int spaces = -1;
-	char *token = NULL;
-	char **tokens = NULL;
+	char *token;
+	char **tokens;
 
 	for (i = 0 ; st[i] != '\0' ; i++)
 	{
@@ -29,19 +29,46 @@ char **tok(char *st, char *dil)
 	}
 	if (spaces == -1)
 		return (NULL);
+	_strcpy(str, st);
 	for (i = 0 ; str[i] ; i++)/*counts spaces or newlines in string*/
 	{
-		if (str[i] == ' ' || str[i] == '\t' || str[i] == ':')
+		if (str[i] == ' ' || str[i] == '\n' || str[i] == ':')
 			spaces++;
 	}
+	printf("%i\n", spaces);
 	tokens = malloc(sizeof(char *) * (spaces + 1));
 	token = strtok(str, dil);/*separates st into an array of strings*/
 	for (i = 0 ; token != NULL ; i++)
 	{
-		tokens[i] = _strdup(token);
+		printf("%s\n", token);
+		/*tokens[i] = malloc(_strlen(token) + 1);*/
+		tokens[i] = strdup(token);
 		token = strtok(NULL, dil);
 	}
 	tokens[i] = NULL;
 	free(str);
 	return (tokens);
+}
+
+int main(void)
+{
+	char *a = "This is a test";
+	char **b;
+	int i = 0;
+
+	b = tok(a, " ");
+
+	while (b[i] != NULL)
+	{
+		write(1, b[i], strlen(b[i]));
+		i++;
+	}
+	i = 0;
+	while (b[i] != NULL)
+	{
+		free(b[i]);
+		i++;
+	}
+	free(b);
+	return (0);
 }

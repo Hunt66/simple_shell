@@ -63,3 +63,29 @@ char **_path(int argc, char **argv, char **env)
 	free(strs);
 	return (argv);
 }
+
+
+int main(int ac, char **av, char **env)
+{
+	char **argv = malloc(sizeof(char *) * 3);
+	int i;
+	(void)ac;
+	(void)av;
+
+	argv[0] = _strdup("ls");
+	argv[1] = _strdup("-l");
+	argv[2] = NULL;
+
+	argv = _path(1, argv, env);
+
+	for (i = 0 ; argv[i] != NULL ; i++)
+	{
+		printf("%s\n", argv[i]);
+	}
+	for (i = 0 ; argv[i] != NULL ; i++)
+	{
+		free(argv[i]);
+	}
+	free(argv);
+	return (0);
+}

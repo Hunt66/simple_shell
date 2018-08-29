@@ -31,9 +31,11 @@ void free_shell(char **argv, char *line)
 			free(argv[i]);
 		}
 		free(argv);
+		argv = NULL;
 	}
 	if (line != NULL)
 		free(line);
+	line = NULL;
 }
 
 /**
@@ -87,6 +89,7 @@ void prompt(int a)
 
 	if (isatty(0))
 	{
-		write(STDOUT_FILENO, "$ ", 2);
+		write(STDOUT_FILENO, "Conch$ ", 7);
 	}
 }
+
