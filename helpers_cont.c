@@ -8,8 +8,11 @@ void sighelp(int a)
 {
 	(void)a;
 
-	write(1, "\n", 1);
-	prompt(1);
+	if (isatty(0))
+	{
+		write(1, "\n", 1);
+		prompt(1);
+	}
 }
 
 /**
@@ -21,9 +24,12 @@ void getline_fail(char **argv, char *line)
 {
 	(void)argv;
 	(void)line;
-	write(STDOUT_FILENO, "\n", 1);
-}
 
+	if (isatty(0))
+	{
+		write(STDOUT_FILENO, "\n", 1);
+	}
+}
 /**
  * print_number - print a numner
  * @a: number to print
