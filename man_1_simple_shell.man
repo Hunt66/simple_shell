@@ -16,14 +16,39 @@ and typing commands from the keyboard, or in non-interactive mode by piping comm
 .SH BUILT-IN COMMANDS
 .B exit
 - exits the shell
+.B env
+- prints the environment
 .SH OPTIONS
 .B hsh
 does not currently take any options.
 .SH RETURN VALUE
 The program will return 0 on success and another number upon an error or failure.
+.SH EXAMPLE
+.B In interactive mode:
+
+$ ./hsh
+.P
+($) /bin/ls
+.P
+hsh main.c shell.c
+.P
+($)
+.P
+($) exit
+.P
+$
+.P
+.P
+.B In non-interactive mode:
+
+$ echo "/bin/ls" | ./hsh
+.P
+hsh main.c shell.c test_ls_2
+.P
+$
 .SH SEE ALSO
 .I sh(1), bash(1)
 .SH BUGS
-So many bugs...
+Known bugs when using the PATH in unusual ways. Under review.
 .SH AUTHOR
 Essence Boayue, Erwin Gove

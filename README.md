@@ -73,6 +73,15 @@ File|Task
 ---|---
 README.md| A file containing the goal of the project and the requirements and restrictions followed while creating it
 AUTHORS| A file listing the contributors to the repository
+getenv_help.c | Contains the functions used to obtain and use the environment
+helpers.c | Contains the _strlen, free_shell, _strcpy, _strcmp, and prompt functions
+helpers_cont.c | Contains the sighelp, getline_fail, print_number, _putchar, and _strdup functions
+helpers_more.c | Contains the str_concat function
+holberton_shell.h | The header file containing the prototypes for each function
+man_1_simple_shell.man | The manual page detailing the features of the shell
+simple_shell.c | The main function from which the shell starts running
+statexec.c | Contains the stat_exec and builtin functions
+tok.c | A function to tokenize the user input and put it in an array
 
 ## Author
 Essence Boayue & Erwin Gove
