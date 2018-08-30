@@ -89,6 +89,6 @@ void prompt(int a)
 
 	if (isatty(0))
 	{
-		write(STDOUT_FILENO, "$ ", 7);
+		write(STDOUT_FILENO, "$ ", 2);
 	}
 }
