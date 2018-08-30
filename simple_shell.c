@@ -61,6 +61,7 @@ int main(int ac, char **av, char **env)
 				extstat = WEXITSTATUS(status);
 		}
 	}
-	free_shell(argv, line);      /*free all in parent*/
+	if (isatty(0))
+		free_shell(argv, line);      /*free all in parent*/
 	return (0);
 }
