@@ -111,4 +111,5 @@ tok.c | A function to tokenize the user input and put it in an array
 
 ## Authors
 Essence Boayue [Github](https://github.com/eboayue)|[Twitter](https://twitter.com/girlsaregeeks2)|[LinkedIn](https://www.linkedin.com/in/essenceboayue/)
+
 Erwin Gove [Github](https://github.com/Hunt6666)|[Twitter](https://twitter.com/ErwinEhg50)|[LinkedIn](https://www.linkedin.com/in/erwin-gove-78ab98163/)
