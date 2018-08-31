@@ -34,9 +34,11 @@ Compile like so:
 ## How to Use
 
 Interactive:
+
 ![](Demo3.gif)
 
 Non-Interactive:
+
 ![](Demodemo.gif)
 
 ---
