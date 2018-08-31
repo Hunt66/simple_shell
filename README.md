@@ -24,10 +24,15 @@ During this project we will cover:
 ## How to Install
 
 Clone the repo to your machine:
+
 `git clone git@github.com:eboayue/simple_shell.git`
+
 Move into the directory:
+
 `cd simple_shell/`
+
 Compile like so:
+
 `gcc -Wall -Werror -Wextra -pedantic *.c -o hsh`
 
 ---
@@ -104,5 +109,6 @@ simple_shell.c | The main function from which the shell starts running
 statexec.c | Contains the stat_exec and builtin functions
 tok.c | A function to tokenize the user input and put it in an array
 
-## Author
-Essence Boayue & Erwin Gove
+## Authors
+Essence Boayue [Github](https://github.com/eboayue)|[Twitter](https://twitter.com/girlsaregeeks2)|[LinkedIn](https://www.linkedin.com/in/essenceboayue/)
+Erwin Gove [Github](https://github.com/Hunt6666)|[Twitter](https://twitter.com/ErwinEhg50)|[LinkedIn](https://www.linkedin.com/in/erwin-gove-78ab98163/)
