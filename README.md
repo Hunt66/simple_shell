@@ -2,7 +2,9 @@
 ---
 ## Description
 
-During this project I will learn:
+This project aims to recreate the Thompson Shell in a limited scope. This shell was created and tested on Ubuntu 14.04 using gcc 4.8.4. Your milage may vary on other distributions or versions. 
+
+During this project we will cover:
 - Who designed and implemented the original Unix operating system
 - Who wrote the first version of the UNIX shell
 - Who invented the B programming language (the direct predecessor to the C programming language)
@@ -19,13 +21,37 @@ During this project I will learn:
 - What is `EOF` / “end-of-file”?
 
 ---
+## How to Install
+
+Clone the repo to your machine:
+
+`git clone git@github.com:eboayue/simple_shell.git`
+
+Move into the directory:
+
+`cd simple_shell/`
+
+Compile like so:
+
+`gcc -Wall -Werror -Wextra -pedantic *.c -o hsh`
+
+---
+## How to Use
+
+Interactive:
+
+![](Demo3.gif)
+
+Non-Interactive:
+
+![](Demodemo.gif)
+
+---
 ## Requirements
 
 - Allowed editors: `vi`, `vim`, `emacs`
 - All files will be compiled on Ubuntu 14.04 LTS
 - Programs and functions will be compiled with `gcc 4.8.4` using the flags `-Wall` `-Werror` `-Wextra` and `-pedantic`
-- All files should end with a new line
-- A `README.md` file, at the root of the folder of the project is mandatory
 - Code should use the `Betty` style. It will be checked using betty-style.pl and betty-doc.pl
 - No more than 5 functions per file
 - All header files should be include guarded
@@ -69,7 +95,7 @@ During this project I will learn:
 - `fflush` (man 3 fflush)
 
 ---
-File|Task
+File|Description
 ---|---
 README.md| A file containing the goal of the project and the requirements and restrictions followed while creating it
 AUTHORS| A file listing the contributors to the repository
@@ -83,5 +109,7 @@ simple_shell.c | The main function from which the shell starts running
 statexec.c | Contains the stat_exec and builtin functions
 tok.c | A function to tokenize the user input and put it in an array
 
-## Author
-Essence Boayue & Erwin Gove
+## Authors
+Essence Boayue [Github](https://github.com/eboayue)|[Twitter](https://twitter.com/girlsaregeeks2)|[LinkedIn](https://www.linkedin.com/in/essenceboayue/)
+
+Erwin Gove [Github](https://github.com/Hunt6666)|[Twitter](https://twitter.com/ErwinEhg50)|[LinkedIn](https://www.linkedin.com/in/erwin-gove-78ab98163/)

@@ -1,4 +1,4 @@
-.TH Simple Shell "1" "27 August 2018" "Simple Shell man page" "Simple Shell man page"
+.TH "Simple Shell" "1" "27 August 2018" "Simple Shell man page" "Simple Shell man page"
 .SH NAME
 .B hsh
 - A simple shell.
